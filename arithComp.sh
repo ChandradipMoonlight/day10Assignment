@@ -6,20 +6,39 @@ read -p "Enter the first number : " a
 read -p "Enter the second number : " b
 read -p "Enter the third number : " c
 
-result1=$(echo $a $b $c | awk '{print $1+$2*$3}')
+result1=$(($a+$b*$c))
 dict['result1']=$result1
 
-result2=$(echo $a $b $c | awk '{print $3+$1/$2}')
+result2=$(($c+$a/$b))
 dict['result2']=$result2
 
-result3=$(echo $a $b $c | awk '{print $1*$2+$3}')
+result3=$(($a*$b+$c))
 dict['result3']=$result3
 
-result4=$(echo $a $b $c | awk '{print $1%$2+$3}')
+result4=$(($a%$b+$c))
 dict['result4']=$result4
 
 echo "dictionry values are : ${dict[@]}"
 
-arr=(${dict[@]})
+save=(${dict[@]})
 
-echo "values of array are : ${arr[@]}"
+echo "values of array are : ${save[@]}"
+
+n=${#save[@]}
+
+
+for ((i=0; i<$n; i++))
+do
+	for (( j=0; j<$(($n-$i-1)); j++ ))
+	do
+		if [ ${save[$j]} -lt ${save[ $(($j+1)) ]} ]
+		then
+			a=${save[$j]}
+			save[$j]=${save[ $(($j+1)) ]}
+			save[ $(($j+1)) ]=$a
+		fi
+	done
+done
+echo "sorted Array is :"
+echo ${save[@]}
+
