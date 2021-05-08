@@ -10,4 +10,6 @@ result1=$(echo $a $b $c | awk '{print $1+$2*$3}')
 
 result2=$(echo $a $b $c | awk '{print $3+$1/$2}')
 
-result1=$(echo $a $b $c | awk '{print $1*$2+$3}')
+result3=$(echo $a $b $c | awk '{print $1*$2+$3}')
+
+result4=$(echo $a $b $c | awk '{print $1%$2+$3}')
