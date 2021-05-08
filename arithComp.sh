@@ -18,4 +18,8 @@ dict['result3']=$result3
 result4=$(echo $a $b $c | awk '{print $1%$2+$3}')
 dict['result4']=$result4
 
-echo ${dict[@]}
+echo "dictionry values are : ${dict[@]}"
+
+arr=(${dict[@]})
+
+echo "values of array are : ${arr[@]}"
